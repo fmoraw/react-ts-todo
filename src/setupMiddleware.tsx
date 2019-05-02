@@ -4,6 +4,8 @@ import { createBrowserHistory } from "history"
 import { composeWithDevTools } from "redux-devtools-extension"
 import thunk from "redux-thunk"
 import logger from "redux-logger"
+
+import parseMiddleware from "./parseMiddleware";
 import api from "./api";
 import { todoReducer } from "./todoreducer";
 import { TodoState } from "./types"
@@ -31,6 +33,7 @@ const composeMiddleware = () => {
             applyMiddleware(
                 thunk.withExtraArgument({ api }),
                 routerMiddleware(history),
+                parseMiddleware,
                 logger,
             )
         )
