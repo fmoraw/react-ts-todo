@@ -18,7 +18,7 @@ ReactDOM.render(
                 <Route exact={true} path="/"><App/></Route>
                 <Route path="/123">
                     <div>
-                        <Link to={"/0"}>TEST</Link>    
+                        <Link to={"/0"}><ListComponentContainer /></Link>    
                     </div>
                 </Route>
             </Switch>

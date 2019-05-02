@@ -2,6 +2,7 @@ import { connect } from "react-redux"
 import { Todo, TodoState } from "../types";
 import TodoListComponent from "./TodoList"
 import { ApplicationState } from "../setupMiddleware";
+import { fetchRequestFindTodos } from '../todoActions';
 
 const mapStateToProps = function(state: any) {
     return {
@@ -10,7 +11,9 @@ const mapStateToProps = function(state: any) {
 }
 
 const mapDispatchToProps = (dispatch: Function) => {
-    return {}
+    return {
+        handleMount: () => dispatch(fetchRequestFindTodos())
+    }
 }
 
 interface DispatchToProps {}

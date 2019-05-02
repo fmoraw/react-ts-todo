@@ -6,16 +6,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 import ListComponent from "./02-ListComponent/TodoList"
 import SandboxHeader from './SandBoxHeader';
 
-declare var process : {
-  env: {
-    REACT_APP_PARSE_APP_ID: string,
-    REACT_APP_PARSE_SERVER_URL: string,
-  }
-}
-
 const initializeParse = () => {
-  Parse.initialize(process.env.REACT_APP_PARSE_APP_ID);
-  (Parse as any).serverURL = process.env.REACT_APP_PARSE_SERVER_URL;
+  Parse.initialize('myAppId');
+  (Parse as any).serverURL = 'https://fulda-dev-meetup.herokuapp.com/parse';
 };
 
 initializeParse();
