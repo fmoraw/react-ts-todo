@@ -1,17 +1,60 @@
-import { Todo } from "./types";
+import { Todo, TodoState } from "./types";
 
-export const SAVE_TODO = "todo/SAVE_TODO"
+export const FETCH_REQUEST_FIND_TODOS = "todo/FETCH_REQUEST_FIND_TODOS";
+export const FETCH_SUCCESS_FIND_TODOS = "todo/FETCH_SUCCESS_FIND_TODOS";
+export const FETCH_REQUEST_CREATE_TODO = "todo/FETCH_REQUEST_CREATE_TODO";
+export const FETCH_REQUEST_UPDATE_TODO = "todo/FETCH_REQUEST_UPDATE_TODO";
 
-export interface SaveTodoAction {
-    type: typeof SAVE_TODO
-    payload: Todo
+export interface FindTodosAction {
+    type: typeof FETCH_REQUEST_FIND_TODOS,
+    payload: {
+      objectName: string,
+    }
 }
 
-export function saveTodo(todo: Todo): SaveTodoAction {
-    return {
-      type: SAVE_TODO,
-      payload: todo
+export interface CreateTodoAction {
+  type: typeof FETCH_REQUEST_CREATE_TODO,
+  payload: Todo
+}
+
+export interface UpdateTodoAction {
+  type: typeof FETCH_REQUEST_UPDATE_TODO,
+  payload: Todo
+}
+
+export interface SuccessFindTodoAction {
+  type: typeof FETCH_SUCCESS_FIND_TODOS,
+  payload: TodoState
+}
+
+export function fetchRequestFindTodos(): FindTodosAction {
+  return {
+    type: FETCH_REQUEST_FIND_TODOS,
+    payload: {
+      objectName: 'Todo',
     }
   }
+}
 
-export type TodoActions = SaveTodoAction
+export function fetchRequestCreateTodo(todo: Todo): CreateTodoAction {
+  return {
+    type: FETCH_REQUEST_CREATE_TODO,
+    payload: todo
+  }
+}
+
+export function fetchRequestUpdateTodo(todo: Todo): UpdateTodoAction {
+  return {
+    type: FETCH_REQUEST_UPDATE_TODO,
+    payload: todo
+  }
+}
+
+export function fetchSuccessFindTodos(todos: TodoState): SuccessFindTodoAction {
+  return {
+    type: FETCH_SUCCESS_FIND_TODOS,
+    payload: todos,
+  }
+}
+
+export type TodoActions = FindTodosAction | CreateTodoAction | UpdateTodoAction | SuccessFindTodoAction
