@@ -5,11 +5,10 @@ import { composeWithDevTools } from "redux-devtools-extension"
 import thunk from "redux-thunk"
 import logger from "redux-logger"
 
-import parseMiddleware from "./parseMiddleware";
-import api from "./api";
-import { todoReducer } from "./todoreducer";
+import parseMiddleware from "./parseMiddleware"
+import { todoReducer } from "./todoreducer"
 import { TodoState } from "./types"
-import { TodoActions } from "./todoActions";
+import { TodoActions } from "./todoActions"
 
 
 export interface ApplicationState {
@@ -31,7 +30,7 @@ const composeMiddleware = () => {
     if (process.env.NODE_ENV !== "production") {
         middleware = composeWithDevTools(
             applyMiddleware(
-                thunk.withExtraArgument({ api }),
+                thunk,
                 routerMiddleware(history),
                 parseMiddleware,
                 logger,
@@ -39,7 +38,8 @@ const composeMiddleware = () => {
         )
     } else {
         middleware = applyMiddleware(
-            thunk.withExtraArgument({ api }),
+            thunk,
+            parseMiddleware,
             routerMiddleware(history),
         )
     }

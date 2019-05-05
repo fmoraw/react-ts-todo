@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from "react-router-dom";
 
 interface ListComponentProps {
-    handleMount?: () => void,
+    fetchTodos: () => void,
 }
 
 interface ListComponentState {
@@ -12,10 +12,8 @@ interface ListComponentState {
 export default class TodoListComponent extends React.Component<ListComponentProps, ListComponentState> {
 
     public componentDidMount() {
-        const { handleMount } = this.props;
-        if(handleMount) {
-            handleMount();
-        }
+        const { fetchTodos } = this.props;
+        fetchTodos()
     }
 
     public render() {

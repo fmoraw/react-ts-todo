@@ -12,10 +12,12 @@ const mapStateToProps = function(state: any) {
 
 const mapDispatchToProps = (dispatch: Function) => {
     return {
-        handleMount: () => dispatch(fetchRequestFindTodos())
+        fetchTodos: () => dispatch(fetchRequestFindTodos())
     }
 }
 
-interface DispatchToProps {}
+interface DispatchToProps {
+    fetchTodos: () => void
+}
 
 export default connect<TodoState, DispatchToProps, {}, ApplicationState>(mapStateToProps, mapDispatchToProps)(TodoListComponent)

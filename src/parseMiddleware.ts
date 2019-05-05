@@ -1,10 +1,10 @@
-import Parse from 'parse';
+import Parse from 'parse'
 
 const findAPI = (dispatch: any, objectName: any, successAction: any) => {
-  const query = new Parse.Query(Parse.Object.extend(objectName));
+  const query = new Parse.Query(Parse.Object.extend(objectName))
   return query.find()
-     .then(result => dispatch(successAction(result)))
-    .catch(error => console.error(error.message));
+    .then(result => dispatch(successAction(result)))
+    .catch(error => console.error(error.message))
 };
 
 const createAPI = (dispatch: any, formData: any, objectName: any, successAction: any) => {
