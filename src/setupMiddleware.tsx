@@ -12,7 +12,7 @@ import { TodoActions } from "./todoActions"
 
 
 export interface ApplicationState {
-    todo: TodoState | undefined
+    todo: TodoState
     router: RouterState
 }
 

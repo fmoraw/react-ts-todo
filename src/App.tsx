@@ -1,8 +1,9 @@
+import 'bootstrap/dist/css/bootstrap.css';
+import './App.css';
+
 import React from 'react';
 import * as Parse from 'parse';
 import logo from './logo.svg';
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.css';
 import ListComponent from "./02-ListComponent/ListComponent.container"
 import SandboxHeader from './SandBoxHeader';
 
