@@ -19,6 +19,7 @@ export interface FindTodosAction {
 
 export interface CreateTodoAction {
   type: typeof FETCH_REQUEST_CREATE_TODO,
+  successAction: () => void,
   payload: Todo,
   method: string,
  // successAction: SuccessCreateTodo
@@ -30,6 +31,7 @@ export interface SuccessCreateTodo {
 
 export interface UpdateTodoAction {
   type: typeof FETCH_REQUEST_UPDATE_TODO,
+  successAction: () => void,
   payload: Todo
   method: string,
 }
@@ -53,6 +55,7 @@ export function fetchRequestFindTodos(): FindTodosAction {
 export function fetchRequestCreateTodo(todo: Todo): CreateTodoAction {
   return {
     type: FETCH_REQUEST_CREATE_TODO,
+    successAction: () => fetchRequestFindTodos(),
     payload: todo,
     method: 'create'
   }
@@ -61,6 +64,7 @@ export function fetchRequestCreateTodo(todo: Todo): CreateTodoAction {
 export function fetchRequestUpdateTodo(todo: Todo): UpdateTodoAction {
   return {
     type: FETCH_REQUEST_UPDATE_TODO,
+    successAction: () => fetchRequestFindTodos(),
     payload: todo,
     method: 'update',
   }
