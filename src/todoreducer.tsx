@@ -4,7 +4,6 @@ import { TodoActions,
     FETCH_SUCCESS_FIND_TODOS,
     SUCCESS_CREATE_TODO,
 } from "./todoActions"
-import TodoListComponent from "./02-ListComponent/TodoList";
 
 
 export const initialState: TodoState = {

@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from "react"
-import { Link } from "react-router-dom";
+import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table"
 import { Field } from "redux-form"
 import { Todo } from "../types";
 
@@ -36,7 +36,12 @@ export default class TodoListComponent extends React.Component<ListComponentProp
     }
 
     private renderTodos = () => {
-        return this.props.todos.map((todo) => (<li key={todo.id}>{todo.text}</li>))
+        const { todos } = this.props;
+        return (
+            <BootstrapTable data={todos}>
+                <TableHeaderColumn dataField="text" isKey>Todos</TableHeaderColumn>
+            </BootstrapTable>
+        )
     }
 
     public render() {
