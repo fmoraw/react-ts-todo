@@ -9,6 +9,9 @@ const formName = 'todoForm';
 
 const FormComponent = reduxForm<any, any>({
     form: formName,
+    initialValues: {
+        status: 'active'
+    }
   })(TodoListComponent);
   
 const mapStateToProps = function(state: any) {
@@ -21,13 +24,12 @@ const mapDispatchToProps = (dispatch: Function) => {
     return {
         fetchTodos: () => dispatch(fetchRequestFindTodos()),
         onSubmit: (todo: any) => dispatch(fetchRequestCreateTodo(todo)).then(() => dispatch(reset(formName))),
-        addTodo: (todo: Todo) => dispatch(fetchRequestCreateTodo(todo))
     }
 }
 
 interface DispatchToProps {
     fetchTodos: () => void
-    addTodo: (todo : Todo) => void
+    onSubmit: (todo : Todo) => void
 }
 
 export default connect<TodoState, DispatchToProps, {}, ApplicationState>(mapStateToProps, mapDispatchToProps)(FormComponent)
