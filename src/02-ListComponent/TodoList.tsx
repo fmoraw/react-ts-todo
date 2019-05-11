@@ -14,6 +14,19 @@ interface ListComponentState {
     todoInput: string
 }
 
+interface ReduxFormField {
+    input: any,
+    type: any,
+    meta: any,
+}
+
+const renderField = ({ input, type, meta: { touched, error, warning } }:ReduxFormField) => (
+      <div>
+        <input {...input} type={type} className="form-control w-100"/>
+        {touched && (error && <div className="alert alert-danger" role="alert">{error}</div>)}
+      </div>
+  )
+
 export default class TodoListComponent extends React.Component<ListComponentProps, ListComponentState> {
 
     public componentDidMount() {
@@ -25,9 +38,8 @@ export default class TodoListComponent extends React.Component<ListComponentProp
         return (
             <React.Fragment>
                 <Field
-                    className="form-control"
                     name="text"
-                    component="input"
+                    component={renderField}
                     type="text"
                     placeholder="Was ist dein nächstes Todo?"
                 />
@@ -55,7 +67,7 @@ export default class TodoListComponent extends React.Component<ListComponentProp
         const { handleSubmit } = this.props;
         return (
             <div>
-            <form className="form-inline" onSubmit={handleSubmit}> 
+            <form onSubmit={handleSubmit}> 
                 {this.renderaAddTodo()}
             </form>
                 <ul>

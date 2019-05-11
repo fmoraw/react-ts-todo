@@ -7,11 +7,22 @@ import { fetchRequestFindTodos, fetchRequestCreateTodo, fetchRequestUpdateTodo }
 
 const formName = 'todoForm';
 
+const validate = (values: any) => {
+    const errors: any = {}
+    if (!values.text) {
+        errors.text = 'Bitte ausfüllen'
+    } else if (values.text.length > 40) {
+        errors.text = 'Text ist zu lang.'
+    }
+    return errors
+  }
+
 const FormComponent = reduxForm<any, any>({
     form: formName,
     initialValues: {
         status: 'active'
-    }
+    },
+    validate
   })(TodoListComponent);
   
 const mapStateToProps = function(state: any) {
