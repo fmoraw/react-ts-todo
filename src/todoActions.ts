@@ -1,5 +1,4 @@
-import { Todo, TodoState } from "./types";
-import { todoReducer } from "./todoreducer";
+import { Todo } from "./types";
 
 export const FETCH_REQUEST_FIND_TODOS = "todo/FETCH_REQUEST_FIND_TODOS";
 export const FETCH_SUCCESS_FIND_TODOS = "todo/FETCH_SUCCESS_FIND_TODOS";
