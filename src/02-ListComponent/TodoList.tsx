@@ -1,10 +1,11 @@
 import React, { ChangeEvent } from "react"
 import { Link } from "react-router-dom";
+import { Field } from "redux-form"
 import { Todo } from "../types";
 
 interface ListComponentProps {
+    handleSubmit: () => void,
     fetchTodos: () => void,
-    addTodo: (todo: Todo) => void,
     todos: Todo[]
 }
 
@@ -19,24 +20,17 @@ export default class TodoListComponent extends React.Component<ListComponentProp
         fetchTodos()
     }
 
-    private handleChange(event: ChangeEvent<HTMLInputElement>) {
-        this.setState({todoInput: event.target.value})
-    }
-    
-    private handleOnClick(event: React.MouseEvent<HTMLElement>) {
-        event.preventDefault()
-        this.props.addTodo({
-            id: "",
-            text: this.state.todoInput,
-            status: "active"
-        })
-    }
-
     private renderaAddTodo() {
         return (
             <React.Fragment>
-                <input className="form-control" onChange={(event) => this.handleChange(event)}/>
-                <button className="btn btn-primary" onClick={this.handleOnClick.bind(this)}>Add</button>
+                <Field
+                    className="form-control"
+                    name="text"
+                    component="input"
+                    type="text"
+                    placeholder="Was ist dein nächstes Todo?"
+                />
+                <button className="btn btn-primary" type="submit">Add</button>
             </React.Fragment>
         )
     }
@@ -46,9 +40,10 @@ export default class TodoListComponent extends React.Component<ListComponentProp
     }
 
     public render() {
+        const { handleSubmit } = this.props;
         return (
             <div>
-            <form className="form-inline">
+            <form className="form-inline" onSubmit={handleSubmit}> 
                 {this.renderaAddTodo()}
             </form>
                 <ul>
