@@ -10,7 +10,7 @@ export const initialState: TodoState = {
     todos: []
 }
 
-export const todoReducer: Reducer<any, TodoActions> = (state = initialState, action: TodoActions): TodoState => {
+export const todoReducer: Reducer<any, TodoActions> = (state = initialState, action: TodoActions) => {
     switch(action.type) {
         case FETCH_SUCCESS_FIND_TODOS:
             return {

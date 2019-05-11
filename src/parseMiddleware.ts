@@ -1,17 +1,14 @@
 import Parse from 'parse'
-import { Action } from 'redux';
-import { FindTodosAction, CreateTodoAction, UpdateTodoAction, SuccessCreateTodoAction, fetchSuccessCreateTodo, fetchSuccessUpdateTodo, SuccessFindTodoAction, fetchSuccessFindTodos, fetchRequestFindTodos } from './todoActions';
+import { 
+  FindTodosAction,
+  CreateTodoAction,
+  UpdateTodoAction,
+  fetchSuccessCreateTodo,
+  fetchSuccessUpdateTodo,
+  fetchSuccessFindTodos,
+} from './todoActions';
 import { Todo } from './types';
-import { parse } from 'path';
-
-const findAPI = (dispatch: any) => {
-  const parseTodo = Parse.Object.extend("todo");
-  const query = new Parse.Query(parseTodo)
-  query.containedIn("status", ["active"]);
-  return query.find()
-    .then(result => dispatch(fetchSuccessFindTodos(result.map(parseTodo => convertTodoFromParse(parseTodo)))))
-    .catch(error => console.error(error.message))
-}
+import { Dispatch } from 'redux';
 
 const convertTodoFromParse = (parseTodo: any) => {
   return {
@@ -21,16 +18,21 @@ const convertTodoFromParse = (parseTodo: any) => {
   }
 }
 
-const createAPI = (dispatch: any, action: CreateTodoAction) => {
+const findAPI = (dispatch: Dispatch) => {
+  const parseTodo = Parse.Object.extend("todo");
+  const query = new Parse.Query(parseTodo)
+  query.containedIn("status", ["active"]);
+  return query.find()
+    .then(result => dispatch(fetchSuccessFindTodos(result.map(parseTodo => convertTodoFromParse(parseTodo)))))
+    .catch(error => console.error(error.message))
+}
 
+const createAPI = (dispatch: Dispatch, action: CreateTodoAction) => {
   const todo: Todo = action.payload
-
   const NewObject = Parse.Object.extend("todo")
   const object = new NewObject()
-
   object.set("text", todo.text)
   object.set("status", "active")
-
   return object.save()
     .then((result: any) => {
       findAPI(dispatch)
@@ -39,16 +41,13 @@ const createAPI = (dispatch: any, action: CreateTodoAction) => {
     .catch((error: any) => console.error(error.message))
 };
 
-const updateAPI = (dispatch: any, action: UpdateTodoAction) => {
-
+const updateAPI = (dispatch: Dispatch, action: UpdateTodoAction) => {
   const todo: Todo = action.payload
-
   const NewObject = Parse.Object.extend("todo")
   const object = new NewObject()
   object.set("id", todo.id)
   object.set("text", todo.text)
-  object.set("status", todo.status)
-
+  object.set("status", "done")
   return object.save()
     .then((result: any) => {
       findAPI(dispatch)
@@ -63,7 +62,6 @@ const choseAPI = (store: any, action: parseMiddlewareActions | any) => {
     case 'find': 
       return findAPI(
         store.dispatch,
-    //   action.payload.id
       )
     case 'update':
         return updateAPI(
@@ -75,37 +73,16 @@ const choseAPI = (store: any, action: parseMiddlewareActions | any) => {
         store.dispatch,
         action,
       )
+    default:
+      return Promise.resolve(() => console.log('error'));
   }
-    
-
-  // if (action.method === 'find') {
-  //   return findAPI(
-  //     store.dispatch,
-  //  //   action.payload.id
-  //   );
-  // }
-  if (action.method === 'create') {
-    // return createAPI(
-    //   store.dispatch,
-    //   action,
-    // );
-  }
-  // if (action.payload && action.method === 'update') {
-  //   return updateAPI(
-  //     store.dispatch,
-  //     action.payload.formData,
-  //     action.payload.object,
-  //     action.successAction,
-  //   );
-  // }
-  return Promise.resolve(() => console.log('error'));
 };
 
 type parseMiddlewareActions = FindTodosAction | CreateTodoAction | UpdateTodoAction
 
 const parseMiddleware = (store: any) => (next: any) => (action: parseMiddlewareActions) => {
   if (action.type && action.type.includes('FETCH_REQUEST')) {
-    if (/*action.payload &&*/ action.method) {
+    if (action.method) {
       next(action);
       return choseAPI(store, action);
     }

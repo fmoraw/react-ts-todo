@@ -50,10 +50,7 @@ export default class TodoListComponent extends React.Component<ListComponentProp
     private renderTodos = () => {
         const { todos, setTodoDone } = this.props;
         const options = {
-            onRowClick: function(todo: Todo) {
-                todo.status="done"
-                setTodoDone(todo)
-            }
+            onRowClick: (todo: Todo) => setTodoDone(todo)
         }
         return (
             <BootstrapTable data={todos} options={options}>
