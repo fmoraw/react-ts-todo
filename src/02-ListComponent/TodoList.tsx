@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from "react"
 import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table"
 import { Field } from "redux-form"
-import { Todo } from "../types";
+import { Todo } from "./types";
 
 interface ListComponentProps {
     handleSubmit: () => void,

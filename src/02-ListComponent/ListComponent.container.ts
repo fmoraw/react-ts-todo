@@ -1,9 +1,9 @@
 import { connect } from "react-redux"
-import { Todo } from "../types";
+import { Todo } from "./types";
 import { reduxForm, reset } from "redux-form";
 import TodoListComponent from "./TodoList"
-import { ApplicationState } from "../setupMiddleware";
-import { fetchRequestFindTodos, fetchRequestCreateTodo, fetchRequestUpdateTodo } from '../todoActions';
+import { ApplicationState } from "./setupMiddleware";
+import { fetchRequestFindTodos, fetchRequestCreateTodo, fetchRequestUpdateTodo } from './todoActions';
 
 const formName = 'todoForm';
 

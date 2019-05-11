@@ -1,25 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import * as Parse from 'parse';
 import './index.css';
-import App from './App';
+import 'bootstrap/dist/css/bootstrap.css'; 
 import { Provider } from "react-redux"
 import { ConnectedRouter } from 'connected-react-router';
 import { HashRouter, Switch, Route, Redirect, Link } from "react-router-dom"
+import SandboxHeader from './SandBoxHeader';
 
-import { store, history } from "./setupMiddleware"
+import { store, history } from "./02-ListComponent/setupMiddleware"
 import ListComponentContainer from './02-ListComponent/ListComponent.container';
+
+const initializeParse = () => {
+    Parse.initialize('myAppId');
+    (Parse as any).serverURL = 'https://fulda-dev-meetup.herokuapp.com/parse';
+  };
+  
+  initializeParse();
 
 ReactDOM.render(
     <Provider store={store}>
+    <SandboxHeader />
     <ConnectedRouter history={history} >
         <HashRouter>
             <Switch>
-                <Route exact={true} path="/"><App/></Route>
-                <Route path="/123">
-                    <div>
-                        <Link to={"/0"}><ListComponentContainer /></Link>    
-                    </div>
-                </Route>
+                <Route path="/0"><ListComponentContainer/></Route>
+                <Route path="/1"><div>Test</div></Route>
             </Switch>
         </HashRouter>
     </ConnectedRouter>

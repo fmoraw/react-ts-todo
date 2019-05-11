@@ -11,8 +11,8 @@ export default class SandboxHeader extends React.Component<{},SandboxHeaderState
         return(
             <React.Fragment>
      
-                <a href="#/">Next</a>
-                <a href="#/01">Previous</a>
+                <a href="#/0">Next</a>
+                <a href="#/1">Previous</a>
                 <a href="#/solution">Solution</a>
             </React.Fragment>
         )
