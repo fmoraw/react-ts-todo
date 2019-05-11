@@ -7,6 +7,7 @@ export const FETCH_REQUEST_CREATE_TODO = "todo/FETCH_REQUEST_CREATE_TODO";
 export const FETCH_REQUEST_UPDATE_TODO = "todo/FETCH_REQUEST_UPDATE_TODO";
 
 export const SUCCESS_CREATE_TODO = "todo/CREATE_SUCCESS";
+export const SUCCESS_UPDATE_TODO = "todo/UPDATE_SUCCESS";
 
 export interface FindTodosAction {
     type: typeof FETCH_REQUEST_FIND_TODOS,
@@ -80,6 +81,13 @@ export function fetchSuccessFindTodos(todos: any/*TodoState*/): any/*SuccessFind
 export function fetchSuccessCreateTodo(result: any) {
   return {
     type: SUCCESS_CREATE_TODO,
+    payload: result
+  }
+}
+
+export function fetchSuccessUpdateTodo(result: any) {
+  return {
+    type: SUCCESS_UPDATE_TODO,
     payload: result
   }
 }

@@ -6,6 +6,7 @@ import { Todo } from "../types";
 interface ListComponentProps {
     handleSubmit: () => void,
     fetchTodos: () => void,
+    setTodoDone: (todo: Todo) => void,
     todos: Todo[]
 }
 
@@ -36,9 +37,15 @@ export default class TodoListComponent extends React.Component<ListComponentProp
     }
 
     private renderTodos = () => {
-        const { todos } = this.props;
+        const { todos, setTodoDone } = this.props;
+        const options = {
+            onRowClick: function(todo: Todo) {
+                todo.status="done"
+                setTodoDone(todo)
+            }
+        }
         return (
-            <BootstrapTable data={todos}>
+            <BootstrapTable data={todos} options={options}>
                 <TableHeaderColumn dataField="text" isKey>Todos</TableHeaderColumn>
             </BootstrapTable>
         )

@@ -3,7 +3,7 @@ import { Todo, TodoState } from "../types";
 import { reduxForm, reset } from "redux-form";
 import TodoListComponent from "./TodoList"
 import { ApplicationState } from "../setupMiddleware";
-import { fetchRequestFindTodos, fetchRequestCreateTodo } from '../todoActions';
+import { fetchRequestFindTodos, fetchRequestCreateTodo, fetchRequestUpdateTodo } from '../todoActions';
 
 const formName = 'todoForm';
 
@@ -22,8 +22,9 @@ const mapStateToProps = function(state: any) {
 
 const mapDispatchToProps = (dispatch: Function) => {
     return {
+        setTodoDone: (todo: Todo) => dispatch(fetchRequestUpdateTodo(todo)),
         fetchTodos: () => dispatch(fetchRequestFindTodos()),
-        onSubmit: (todo: any) => dispatch(fetchRequestCreateTodo(todo)).then(() => dispatch(reset(formName))),
+        onSubmit: (todo: Todo) => dispatch(fetchRequestCreateTodo(todo)).then(() => dispatch(reset(formName))),
     }
 }
 
