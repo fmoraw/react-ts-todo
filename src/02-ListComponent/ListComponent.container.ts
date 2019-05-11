@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import { Todo, TodoState } from "../types";
+import { Todo } from "../types";
 import { reduxForm, reset } from "redux-form";
 import TodoListComponent from "./TodoList"
 import { ApplicationState } from "../setupMiddleware";
@@ -15,17 +15,19 @@ const validate = (values: any) => {
         errors.text = 'Text ist zu lang.'
     }
     return errors
-  }
+}
 
-const FormComponent = reduxForm<any, any>({
+interface ReduxFormData {
+    form: string
+    validate: () => void
+}
+
+const FormComponent = reduxForm<ReduxFormData, DispatchToProps & MapStateToProps & any>({
     form: formName,
-    initialValues: {
-        status: 'active'
-    },
     validate
   })(TodoListComponent);
   
-const mapStateToProps = function(state: any) {
+const mapStateToProps = function(state: ApplicationState) {
     return {
         todos: state.todo.todos,
     }
@@ -39,9 +41,14 @@ const mapDispatchToProps = (dispatch: Function) => {
     }
 }
 
+interface MapStateToProps {
+    todos: Todo[]
+}
+
 interface DispatchToProps {
     fetchTodos: () => void
+    setTodoDone: (todo: Todo) => void
     onSubmit: (todo : Todo) => void
 }
 
-export default connect<TodoState, DispatchToProps, {}, ApplicationState>(mapStateToProps, mapDispatchToProps)(FormComponent)
+export default connect<MapStateToProps, DispatchToProps, {}, ApplicationState>(mapStateToProps, mapDispatchToProps)(FormComponent)

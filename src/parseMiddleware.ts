@@ -1,6 +1,6 @@
 import Parse from 'parse'
 import { Action } from 'redux';
-import { FindTodosAction, CreateTodoAction, UpdateTodoAction, SuccessCreateTodo, fetchSuccessCreateTodo, fetchSuccessUpdateTodo, SuccessFindTodoAction, fetchSuccessFindTodos, fetchRequestFindTodos } from './todoActions';
+import { FindTodosAction, CreateTodoAction, UpdateTodoAction, SuccessCreateTodoAction, fetchSuccessCreateTodo, fetchSuccessUpdateTodo, SuccessFindTodoAction, fetchSuccessFindTodos, fetchRequestFindTodos } from './todoActions';
 import { Todo } from './types';
 import { parse } from 'path';
 
@@ -29,12 +29,12 @@ const createAPI = (dispatch: any, action: CreateTodoAction) => {
   const object = new NewObject()
 
   object.set("text", todo.text)
-  object.set("status", todo.status)
+  object.set("status", "active")
 
   return object.save()
     .then((result: any) => {
       findAPI(dispatch)
-      dispatch(fetchSuccessCreateTodo(convertTodoFromParse(result)))
+      dispatch(fetchSuccessCreateTodo())
     })
     .catch((error: any) => console.error(error.message))
 };
@@ -52,7 +52,7 @@ const updateAPI = (dispatch: any, action: UpdateTodoAction) => {
   return object.save()
     .then((result: any) => {
       findAPI(dispatch)
-      dispatch(fetchSuccessUpdateTodo(convertTodoFromParse(result)))
+      dispatch(fetchSuccessUpdateTodo())
     })
     .catch((error: any) => console.error(error.message))
 };

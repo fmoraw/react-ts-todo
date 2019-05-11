@@ -12,43 +12,32 @@ export const SUCCESS_UPDATE_TODO = "todo/UPDATE_SUCCESS";
 export interface FindTodosAction {
     type: typeof FETCH_REQUEST_FIND_TODOS,
     method: string,
-    successAction: (result: any) => void,
-    // payload: {
-    //   id: string,
-    // }
 }
 
 export interface CreateTodoAction {
   type: typeof FETCH_REQUEST_CREATE_TODO,
-  successAction: () => void,
   payload: Todo,
   method: string,
- // successAction: SuccessCreateTodo
 }
 
-export interface SuccessCreateTodo {
+export interface SuccessCreateTodoAction {
   type: typeof SUCCESS_CREATE_TODO
 }
 
 export interface UpdateTodoAction {
   type: typeof FETCH_REQUEST_UPDATE_TODO,
-  successAction: () => void,
   payload: Todo
   method: string,
 }
 
 export interface SuccessFindTodoAction {
   type: typeof FETCH_SUCCESS_FIND_TODOS,
-  payload: TodoState
+  payload: Array<any>
 }
 
 export function fetchRequestFindTodos(): FindTodosAction {
   return {
     type: FETCH_REQUEST_FIND_TODOS,
-    successAction: result => fetchSuccessFindTodos(result),
-    // payload: {
-    //   objectName: 'Todo',
-    // },
     method: 'find',
   }
 }
@@ -56,7 +45,6 @@ export function fetchRequestFindTodos(): FindTodosAction {
 export function fetchRequestCreateTodo(todo: Todo): CreateTodoAction {
   return {
     type: FETCH_REQUEST_CREATE_TODO,
-    successAction: () => fetchRequestFindTodos(),
     payload: todo,
     method: 'create'
   }
@@ -65,31 +53,28 @@ export function fetchRequestCreateTodo(todo: Todo): CreateTodoAction {
 export function fetchRequestUpdateTodo(todo: Todo): UpdateTodoAction {
   return {
     type: FETCH_REQUEST_UPDATE_TODO,
-    successAction: () => fetchRequestFindTodos(),
     payload: todo,
     method: 'update',
   }
 }
 
-export function fetchSuccessFindTodos(todos: any/*TodoState*/): any/*SuccessFindTodoAction*/ {
+export function fetchSuccessFindTodos(todos: Array<any>): SuccessFindTodoAction {
   return {
     type: FETCH_SUCCESS_FIND_TODOS,
     payload: todos,
   }
 }
 
-export function fetchSuccessCreateTodo(result: any) {
+export function fetchSuccessCreateTodo() {
   return {
     type: SUCCESS_CREATE_TODO,
-    payload: result
   }
 }
 
-export function fetchSuccessUpdateTodo(result: any) {
+export function fetchSuccessUpdateTodo() {
   return {
     type: SUCCESS_UPDATE_TODO,
-    payload: result
   }
 }
 
-export type TodoActions = FindTodosAction | SuccessCreateTodo | UpdateTodoAction | SuccessFindTodoAction
+export type TodoActions = FindTodosAction | SuccessCreateTodoAction | UpdateTodoAction | SuccessFindTodoAction

@@ -11,7 +11,6 @@ interface ListComponentProps {
 }
 
 interface ListComponentState {
-    todoInput: string
 }
 
 interface ReduxFormField {
@@ -30,7 +29,7 @@ const renderField = ({ input, type, meta: { touched, error, warning } }:ReduxFor
 export default class TodoListComponent extends React.Component<ListComponentProps, ListComponentState> {
 
     public componentDidMount() {
-        const { fetchTodos } = this.props;
+        const { fetchTodos } = this.props
         fetchTodos()
     }
 
@@ -58,7 +57,8 @@ export default class TodoListComponent extends React.Component<ListComponentProp
         }
         return (
             <BootstrapTable data={todos} options={options}>
-                <TableHeaderColumn dataField="text" isKey>Todos</TableHeaderColumn>
+                <TableHeaderColumn dataField="id" isKey>ID</TableHeaderColumn>
+                <TableHeaderColumn dataField="text">Text</TableHeaderColumn>
             </BootstrapTable>
         )
     }
@@ -70,9 +70,7 @@ export default class TodoListComponent extends React.Component<ListComponentProp
             <form onSubmit={handleSubmit}> 
                 {this.renderaAddTodo()}
             </form>
-                <ul>
-                    {this.renderTodos()}
-                </ul> 
+                {this.renderTodos()}
             </div>
         )
     }
