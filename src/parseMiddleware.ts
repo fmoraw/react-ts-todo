@@ -5,7 +5,6 @@ import { Todo } from './types';
 import { parse } from 'path';
 
 const findAPI = (dispatch: any) => {
-  console.log("dispatch")
   const parseTodo = Parse.Object.extend("todo");
   const query = new Parse.Query(parseTodo)
   return query.find()
@@ -28,6 +27,7 @@ const createAPI = (dispatch: any, action: CreateTodoAction) => {
   const NewObject = Parse.Object.extend("todo")
   const object = new NewObject()
   object.set("text", todo.text)
+  object.set("status", todo.status)
 
   return object.save()
     .then((result: any) => {
