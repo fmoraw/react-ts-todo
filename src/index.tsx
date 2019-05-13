@@ -11,6 +11,13 @@ import SandboxHeader from './SandBoxHeader';
 import { store, history } from "./02-ListComponent/setupMiddleware"
 import ListComponentContainer from './02-ListComponent/ListComponent.container';
 
+import Backend from './backend/ListComponent.container';
+import BackendSolution from './backend/ListComponent.container';
+import Forms from './backend/ListComponent.container';
+import FormsSolution from './backend/ListComponent.container';
+import From0ToReact from './backend/ListComponent.container';
+import From0ToReactSolution from './backend/ListComponent.container';
+
 import * as LC1 from './01-ListComponent/ListComponent.container';
 
 const initializeParse = () => {
@@ -29,6 +36,12 @@ ReactDOM.render(
                 <Route path="/01-React-Component-Solution"><div>Test</div></Route>
                 <Route path="/02-Redux-Container"><ListComponentContainer/></Route>
                 <Route path="/02-Redux-Container-Solution"><ListComponentContainer/></Route>
+                <Route path="/forms"><Forms/></Route>
+                <Route path="/forms-solution"><FormsSolution/></Route>
+                <Route path="/backend"><Backend/></Route>
+                <Route path="/backend-solution"><BackendSolution/></Route>
+                <Route path="/from0ToReact"><From0ToReact/></Route>
+                <Route path="/from0ToReact-solution"><From0ToReactSolution/></Route>
             </Switch>
         </HashRouter>
     </ConnectedRouter>
