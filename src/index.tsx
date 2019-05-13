@@ -10,6 +10,7 @@ import SandboxHeader from './SandBoxHeader';
 
 import { store, history } from "./02-ListComponent/setupMiddleware"
 import ListComponentContainer from './02-ListComponent/ListComponent.container';
+import ListComponent from './01-ListComponent/ListComponent';
 
 const initializeParse = () => {
     Parse.initialize('myAppId');
@@ -24,8 +25,10 @@ ReactDOM.render(
     <ConnectedRouter history={history} >
         <HashRouter>
             <Switch>
-                <Route path="/0"><ListComponentContainer/></Route>
-                <Route path="/1"><div>Test</div></Route>
+                <Route path="/01-React-Component"><ListComponent /></Route>
+                <Route path="/01-React-Component-Solution"><div>Test</div></Route>
+                <Route path="/02-Redux-Container"><ListComponentContainer/></Route>
+                <Route path="/02-Redux-Container-Solution"><ListComponentContainer/></Route>
             </Switch>
         </HashRouter>
     </ConnectedRouter>

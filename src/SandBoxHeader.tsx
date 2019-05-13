@@ -9,12 +9,20 @@ export default class SandboxHeader extends React.Component<{},SandboxHeaderState
 
     public render() {
         return(
-            <React.Fragment>
-     
-                <a href="#/0">Next</a>
-                <a href="#/1">Previous</a>
-                <a href="#/solution">Solution</a>
-            </React.Fragment>
+            <ul className="nav nav-pills nav-fill">
+                <li className="nav-item">
+                    <a href="#/01-React-Component">01-React-Component</a>
+                </li>
+                <li className="nav-item">
+                    <a href="#/01-React-Component-Solution">01-React-Component-Solution</a>
+                </li>
+                <li className="nav-item">
+                    <a href="#/02-Redux-Container">02-Redux-Container</a>
+                </li>
+                <li className="nav-item">
+                <a href="/#02-Redux-Container-Solution">02-Redux-Container-Solution</a>
+                </li>
+            </ul>
         )
     }
 }
