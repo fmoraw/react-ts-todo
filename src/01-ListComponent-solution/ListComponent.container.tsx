@@ -5,7 +5,7 @@ export default class ListComponentContainer extends React.Component<{}, {}> {
 
     public render() {
         return (
-            <ListComponent></ListComponent>
+            <ListComponent initialValues={["Cake", "Cream"]}></ListComponent>
         )
     }
 }
