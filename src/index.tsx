@@ -24,7 +24,7 @@ ReactDOM.render(
     <ConnectedRouter history={history} >
         <HashRouter>
             <Switch>
-                <Route path="/01-React-Component"><LC1.default></LC1.default>}</Route>
+                <Route path="/01-React-Component"><LC1.default></LC1.default></Route>
                 <Route path="/01-React-Component-Solution"><div>Test</div></Route>
                 <Route path="/02-Redux-Container"><ListComponentContainer/></Route>
                 <Route path="/02-Redux-Container-Solution"><ListComponentContainer/></Route>
