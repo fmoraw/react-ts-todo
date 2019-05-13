@@ -10,14 +10,13 @@ import SandboxHeader from './SandBoxHeader';
 
 import { store, history } from "./02-ListComponent/setupMiddleware"
 import ListComponentContainer from './02-ListComponent/ListComponent.container';
-import ListComponent from './01-ListComponent/ListComponent';
+import * as LC1 from './01-ListComponent/ListComponent.container';
 
 const initializeParse = () => {
     Parse.initialize('myAppId');
     (Parse as any).serverURL = 'https://fulda-dev-meetup.herokuapp.com/parse';
-  };
-  
-  initializeParse();
+}
+initializeParse();
 
 ReactDOM.render(
     <Provider store={store}>
@@ -25,7 +24,7 @@ ReactDOM.render(
     <ConnectedRouter history={history} >
         <HashRouter>
             <Switch>
-                <Route path="/01-React-Component"><ListComponent /></Route>
+                <Route path="/01-React-Component"><LC1.default></LC1.default>}</Route>
                 <Route path="/01-React-Component-Solution"><div>Test</div></Route>
                 <Route path="/02-Redux-Container"><ListComponentContainer/></Route>
                 <Route path="/02-Redux-Container-Solution"><ListComponentContainer/></Route>
