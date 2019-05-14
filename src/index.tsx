@@ -11,8 +11,8 @@ import SandboxHeader from './SandBoxHeader';
 import { store, history } from "./02-ListComponent/setupMiddleware"
 import ListComponentContainer from './02-ListComponent/ListComponent.container';
 
-import Backend from './backend/ListComponent.container';
-import BackendSolution from './backend-solution/ListComponent.container';
+import Backend from './backend/TodoList';
+import BackendSolution from './backend-solution/TodoList';
 import Forms from './forms/ListComponent.container';
 import FormsSolution from './forms-solution/ListComponent.container';
 
@@ -27,7 +27,7 @@ initializeParse();
 
 ReactDOM.render(
     <Provider store={store}>
-    <SandboxHeader />
+    <SandboxHeader/>
     <ConnectedRouter history={history} >
         <HashRouter>
             <Switch>

@@ -1,73 +1,62 @@
-import React, { ChangeEvent } from "react"
+import React from "react"
 import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table"
-import { Field } from "redux-form"
 import { Todo } from "./types";
 
-interface ListComponentProps {
-    handleSubmit: () => void,
-    fetchTodos: () => void,
-    setTodoDone: (todo: Todo) => void,
-    todos: Todo[]
-}
-
 interface ListComponentState {
+    todos: Todo[]
+    todo: Todo
 }
 
-interface ReduxFormField {
-    input: any,
-    type: any,
-    meta: any,
+interface ListComponentProps {
 }
 
-const renderField = ({ input, type, meta: { touched, error, warning } }:ReduxFormField) => (
-      <div>
-        <input {...input} type={type} className="form-control w-100"/>
-        {touched && (error && <div className="alert alert-danger" role="alert">{error}</div>)}
-      </div>
-  )
+// Step 1: Initialize Parse
+// Step 2: todos fetchen mit find
+// Step 3: todo erstellen
+// Step 4: todo bearbeiten
+
+const createTodo = (todo: Todo) => {console.log('create a todo')};
+const fetchTodos = () => {console.log('fetch todos')};
+const setTodoDone = (todo: Todo) => {console.log('set todo status to done')};
 
 export default class TodoListComponent extends React.Component<ListComponentProps, ListComponentState> {
 
+    constructor(props: ListComponentProps) {
+        super(props);
+        this.state = {
+            todos: [],
+            todo: {
+                text: '',
+                status: 'active',
+                id: '',
+            }
+        }
+    }
+
     public componentDidMount() {
-        const { fetchTodos } = this.props
         fetchTodos()
     }
 
-    private renderaAddTodo() {
-        return (
-            <React.Fragment>
-                <Field
-                    name="text"
-                    component={renderField}
-                    type="text"
-                    placeholder="Was ist dein nächstes Todo?"
-                />
-                <button className="btn btn-primary" type="submit">Add</button>
-            </React.Fragment>
-        )
-    }
-
-    private renderTodos = () => {
-        const { todos, setTodoDone } = this.props;
+    public render() {
         const options = {
             onRowClick: (todo: Todo) => setTodoDone(todo)
         }
         return (
-            <BootstrapTable data={todos} options={options}>
-                <TableHeaderColumn dataField="id" isKey>ID</TableHeaderColumn>
-                <TableHeaderColumn dataField="text">Text</TableHeaderColumn>
-            </BootstrapTable>
-        )
-    }
-
-    public render() {
-        const { handleSubmit } = this.props;
-        return (
             <div>
-            <form onSubmit={handleSubmit}> 
-                {this.renderaAddTodo()}
-            </form>
-                {this.renderTodos()}
+                <form onSubmit={() => createTodo(this.state.todo)}> 
+                    <React.Fragment>
+                        <input
+                            type="text"
+                            className="form-control w-100"
+                            placeholder="Was ist dein nächstes Todo?"
+                        />
+                        <button className="btn btn-primary" type="submit">Add</button>
+                    </React.Fragment>
+                </form>
+                <BootstrapTable data={this.state.todos} options={options}>
+                    <TableHeaderColumn dataField="id" isKey>ID</TableHeaderColumn>
+                    <TableHeaderColumn dataField="text">Text</TableHeaderColumn>
+                </BootstrapTable>
             </div>
         )
     }
