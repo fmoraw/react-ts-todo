@@ -1,31 +1,14 @@
 import { connect } from "react-redux"
 import { Todo } from "./types";
-import { reduxForm, reset } from "redux-form";
 import TodoListComponent from "./TodoList"
 import { ApplicationState } from "./setupMiddleware";
-import { fetchRequestFindTodos, fetchRequestCreateTodo, fetchRequestUpdateTodo } from './todoActions';
+import { fetchRequestFindTodos, fetchRequestUpdateTodo } from './todoActions';
 
-const formName = 'todoForm';
-
-const validate = (values: any) => {
-    const errors: any = {}
-    if (!values.text) {
-        errors.text = 'Bitte ausfüllen'
-    } else if (values.text.length > 40) {
-        errors.text = 'Text ist zu lang.'
-    }
-    return errors
-}
-
-interface ReduxFormData {
-    form: string
-    validate: () => void
-}
-
-const FormComponent = reduxForm<ReduxFormData, DispatchToProps & MapStateToProps & any>({
-    form: formName,
-    validate
-  })(TodoListComponent);
+// Step 2-1: wrap component with reduxForm
+// Step 2-2: add form Name
+// Step 2-3: add validation for the form
+// Step 2-4: add onSubmit function -> createTodo
+// Step 2-4: reset form after submitting
   
 const mapStateToProps = function(state: ApplicationState) {
     return {
@@ -37,7 +20,6 @@ const mapDispatchToProps = (dispatch: Function) => {
     return {
         setTodoDone: (todo: Todo) => dispatch(fetchRequestUpdateTodo(todo)),
         fetchTodos: () => dispatch(fetchRequestFindTodos()),
-        onSubmit: (todo: Todo) => dispatch(fetchRequestCreateTodo(todo)).then(() => dispatch(reset(formName))),
     }
 }
 
@@ -48,7 +30,6 @@ interface MapStateToProps {
 interface DispatchToProps {
     fetchTodos: () => void
     setTodoDone: (todo: Todo) => void
-    onSubmit: (todo : Todo) => void
 }
 
-export default connect<MapStateToProps, DispatchToProps, {}, ApplicationState>(mapStateToProps, mapDispatchToProps)(FormComponent)
+export default connect<MapStateToProps, DispatchToProps, {}, ApplicationState>(mapStateToProps, mapDispatchToProps)(TodoListComponent)

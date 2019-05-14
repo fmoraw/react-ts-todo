@@ -1,10 +1,13 @@
-import React, { ChangeEvent } from "react"
+import React from "react"
 import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table"
-import { Field } from "redux-form"
 import { Todo } from "./types";
 
+// Step 3-1: wrap input into form-Tag with submit (onSubmit is getting handleSubmit)
+// Step 3-2: add redux-form component Field with name, type (placeholder)
+// Step 3-3: use an own component
+// Step 3-4: show validation errors
+
 interface ListComponentProps {
-    handleSubmit: () => void,
     fetchTodos: () => void,
     setTodoDone: (todo: Todo) => void,
     todos: Todo[]
@@ -19,32 +22,11 @@ interface ReduxFormField {
     meta: any,
 }
 
-const renderField = ({ input, type, meta: { touched, error, warning } }:ReduxFormField) => (
-      <div>
-        <input {...input} type={type} className="form-control w-100"/>
-        {touched && (error && <div className="alert alert-danger" role="alert">{error}</div>)}
-      </div>
-  )
-
 export default class TodoListComponent extends React.Component<ListComponentProps, ListComponentState> {
 
     public componentDidMount() {
         const { fetchTodos } = this.props
         fetchTodos()
-    }
-
-    private renderaAddTodo() {
-        return (
-            <React.Fragment>
-                <Field
-                    name="text"
-                    component={renderField}
-                    type="text"
-                    placeholder="Was ist dein nächstes Todo?"
-                />
-                <button className="btn btn-primary" type="submit">Add</button>
-            </React.Fragment>
-        )
     }
 
     private renderTodos = () => {
@@ -61,12 +43,9 @@ export default class TodoListComponent extends React.Component<ListComponentProp
     }
 
     public render() {
-        const { handleSubmit } = this.props;
         return (
             <div>
-            <form onSubmit={handleSubmit}> 
-                {this.renderaAddTodo()}
-            </form>
+                Hier soll ein Formular sein
                 {this.renderTodos()}
             </div>
         )

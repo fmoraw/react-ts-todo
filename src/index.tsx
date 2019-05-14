@@ -12,11 +12,9 @@ import { store, history } from "./02-ListComponent/setupMiddleware"
 import ListComponentContainer from './02-ListComponent/ListComponent.container';
 
 import Backend from './backend/ListComponent.container';
-import BackendSolution from './backend/ListComponent.container';
-import Forms from './backend/ListComponent.container';
-import FormsSolution from './backend/ListComponent.container';
-import From0ToReact from './backend/ListComponent.container';
-import From0ToReactSolution from './backend/ListComponent.container';
+import BackendSolution from './backend-solution/ListComponent.container';
+import Forms from './forms/ListComponent.container';
+import FormsSolution from './forms-solution/ListComponent.container';
 
 import * as LC1 from './01-ListComponent/ListComponent.container';
 import * as LC1Solution from './01-ListComponent-solution/ListComponent.container'
@@ -41,8 +39,6 @@ ReactDOM.render(
                 <Route path="/forms-solution"><FormsSolution/></Route>
                 <Route path="/backend"><Backend/></Route>
                 <Route path="/backend-solution"><BackendSolution/></Route>
-                <Route path="/from0ToReact"><From0ToReact/></Route>
-                <Route path="/from0ToReact-solution"><From0ToReactSolution/></Route>
             </Switch>
         </HashRouter>
     </ConnectedRouter>

@@ -4,18 +4,19 @@ import { createBrowserHistory } from "history"
 import { composeWithDevTools } from "redux-devtools-extension"
 import thunk from "redux-thunk"
 import logger from "redux-logger"
-import { reducer as formReducer } from "redux-form"
 
 import parseMiddleware from "./parseMiddleware"
 import { todoReducer } from "./todoreducer"
 import { TodoState } from "./types"
 import { TodoActions } from "./todoActions"
 
+// Step 1-1: install redux-form
+// Step 1-2 add reducer -> form for redux-form 
+// Step 1-3 add type to ApplicationState
 
 export interface ApplicationState {
     todo: TodoState
     router: RouterState
-    form: any
 }
 
 export type ApplicationAction = TodoActions 
@@ -25,7 +26,6 @@ export const history = createBrowserHistory()
 export const rootReducer: Reducer<ApplicationState> = combineReducers({
     todo: todoReducer,
     router: connectRouter(history),
-    form: formReducer
 })
 
 const composeMiddleware = () => {
