@@ -19,6 +19,7 @@ import From0ToReact from './backend/ListComponent.container';
 import From0ToReactSolution from './backend/ListComponent.container';
 
 import * as LC1 from './01-ListComponent/ListComponent.container';
+import * as LC1Solution from './01-ListComponent-solution/ListComponent.container'
 
 const initializeParse = () => {
     Parse.initialize('myAppId');
@@ -33,7 +34,7 @@ ReactDOM.render(
         <HashRouter>
             <Switch>
                 <Route path="/01-React-Component"><LC1.default></LC1.default></Route>
-                <Route path="/01-React-Component-Solution"><div>Test</div></Route>
+                <Route path="/01-React-Component-Solution"><LC1Solution.default></LC1Solution.default></Route>
                 <Route path="/02-Redux-Container"><ListComponentContainer/></Route>
                 <Route path="/02-Redux-Container-Solution"><ListComponentContainer/></Route>
                 <Route path="/forms"><Forms/></Route>
