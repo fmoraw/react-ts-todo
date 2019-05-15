@@ -1,5 +1,9 @@
 import React from "react";
 
+// Step 1: importiere Hello, Bye und NochNeConst
+// Step 2: const mit Komponente Heading erstellen
+// Step 3: Button mit onClick-Methode erstellen
+
 interface ListComponentProps {}
 
 interface ListComponentState {}
