@@ -7,26 +7,30 @@ import { Dispatch } from "react";
 
 const mapStateToProps = function(state: ApplicationState): MapStateToProps {
     return {
-        todos: state.todo.todos,
+        // add todos as a property and get the todos from the state
     }
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<TodoActions>): DispatchToProps => {
     return {
         setTodoDone: (todo: Todo) => dispatch(fetchRequestUpdateTodo(todo)),
-        fetchTodos: () => dispatch(fetchRequestFindTodos()),
-        onSubmit: (todo: Todo) => dispatch(fetchRequestCreateTodo(todo)),
+        fetchTodos: () => {},
+        // add fetchTodos as a property and dispatch requestFindTodos
+        // add onSubmit as a property and dispatch fetchRequestCreateTodo
+        onSubmit: () => {}
     }
 }
 
 interface MapStateToProps {
-    todos: Todo[]
+   // add the todos type
 }
 
 interface DispatchToProps {
-    fetchTodos: () => void
+    // add fetchTodos as a type
+    fetchTodos: any
+    // add onSubmit as a type
+    onSubmit: any
     setTodoDone: (todo: Todo) => void
-    onSubmit: (todo : Todo) => void
 }
 
 export default connect<MapStateToProps, DispatchToProps, {}, ApplicationState>(mapStateToProps, mapDispatchToProps)(TodoListComponent)

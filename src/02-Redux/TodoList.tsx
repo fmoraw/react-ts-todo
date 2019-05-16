@@ -8,12 +8,11 @@ interface ListComponentState {
   todo: Todo;
 }
 
-interface ListComponentProps {}
-
-// Step 1: Initialize Parse
-// Step 2: todos fetchen mit find
-// Step 3: todo erstellen
-// Step 4: todo bearbeiten
+interface ListComponentProps {
+  fetchTodos: () => void
+  onSubmit: (todo:any) => void
+  setTodoDone: (todo: any) => void
+}
 
 export default class TodoListComponent extends React.Component<
   ListComponentProps,
@@ -32,26 +31,7 @@ export default class TodoListComponent extends React.Component<
   }
 
   public componentDidMount() {
-    this.fetchTodos();
-  }
-
-  private converParseTodosToObject(todos: any) {
-    return todos.map((todo: any) => ({
-      id: todo.id,
-      status: todo.get("status"),
-      text: todo.get("text")
-    }));
-  }
-
-  private fetchTodos() {
-    const Todo = Parse.Object.extend("todo");
-    const query = new Parse.Query(Todo);
-    query.equalTo("status", "active");
-    query
-      .find()
-      .then(result =>
-        this.setState({ todos: this.converParseTodosToObject(result) })
-      );
+    this.props.fetchTodos();
   }
 
   private createTodo() {
@@ -59,7 +39,7 @@ export default class TodoListComponent extends React.Component<
     const todo = new Todo();
     todo.set("text", this.state.todo.text);
     todo.set("status", "active");
-    todo.save().then(() => this.fetchTodos());
+    this.props.onSubmit(todo)
   }
 
   private setTodoDone(todo: Todo) {
@@ -67,7 +47,7 @@ export default class TodoListComponent extends React.Component<
     const todoObject = new Todo();
     todoObject.set("id", todo.id);
     todoObject.set("status", "done");
-    todoObject.save().then(() => this.fetchTodos());
+    this.props.setTodoDone(todoObject)
   }
 
   public render() {

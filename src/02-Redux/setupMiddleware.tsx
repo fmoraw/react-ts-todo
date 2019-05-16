@@ -14,8 +14,6 @@ import { TodoActions } from "./todoActions"
 
 export interface ApplicationState {
     todo: TodoState
-  //  router: RouterState
-  //  form: any
 }
 
 export type ApplicationAction = RouterAction & LocationChangeAction & TodoActions
@@ -24,8 +22,6 @@ export const history = createBrowserHistory()
 
 export const rootReducer: Reducer<ApplicationState, ApplicationAction > = combineReducers({
     todo: todoReducer,
-   // router: connectRouter(history),
-   // form: formReducer
 })
 
 const composeMiddleware = () => {
