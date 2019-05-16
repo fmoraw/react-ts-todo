@@ -9,7 +9,7 @@ import { HashRouter, Switch, Route, Redirect, Link } from "react-router-dom";
 import SandboxHeader from "./SandBoxHeader";
 
 import { store, history } from "./02-ListComponent/setupMiddleware";
-import ListComponentContainer from "./02-ListComponent/ListComponent.container";
+import ListComponentContainer from "./02-Redux/ListComponent.container"
 
 import * as LC2 from "./02-Redux-Solution/ListComponent.container";
 
@@ -43,7 +43,7 @@ ReactDOM.render(
           <Route path="/01-React-Component-Solution">
             <LC1Solution.default />
           </Route>
-          <Route path="/02-Redux-Container">
+          <Route path="/02-Redux">
             <ListComponentContainer />
           </Route>
           <Route path="/02-Redux-Solution">
