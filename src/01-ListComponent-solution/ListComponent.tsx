@@ -29,11 +29,10 @@ export default class ListComponent extends React.Component<ListComponentProps, L
     }
 
     public handleClick = () => {
+        const newTodos = Array.from(this.state.todos)
         this.setState({
-            todos: this.state.todos.push(this.state.input),
-            ...this.state
+            todos: newTodos
          })
-        
     }
 
     public renderItemsFromState = () => {
