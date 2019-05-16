@@ -41,10 +41,10 @@ export function fetchRequestFindTodos(): FindTodosAction {
   }
 }
 
-export function fetchRequestCreateTodo(todo: Todo): CreateTodoAction {
+export function fetchRequestCreateTodo(todo: Todo): any /* replace any with the proper interface*/ {
   return {
-    type: FETCH_REQUEST_CREATE_TODO,
-    payload: todo,
+    // add the proper type: ?
+    // add the payload: ?
     method: 'create'
   }
 }
