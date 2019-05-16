@@ -30,6 +30,7 @@ export default class ListComponent extends React.Component<ListComponentProps, L
 
     public handleClick = () => {
         const newTodos = Array.from(this.state.todos)
+        newTodos.push(this.state.input)
         this.setState({
             todos: newTodos
          })

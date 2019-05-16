@@ -46,6 +46,7 @@ export default class ListComponent extends React.Component<ListComponentProps, L
     public handleClick = () => {
         // Uncomment when interfaces are defined
         // const newTodos = Array.from(this.state.todos)
+        // newTodos.push(this.state.input)
         // this.setState({
         //     todos: newTodos
         // })
