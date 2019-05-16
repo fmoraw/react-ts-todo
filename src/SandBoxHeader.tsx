@@ -25,8 +25,8 @@ export default class SandboxHeader extends React.Component<
           <a href="#/02-Redux-Container">02-Redux-Container</a>
         </li>
         <li className="nav-item">
-          <a href="/#02-Redux-Container-Solution">
-            02-Redux-Container-Solution
+          <a href="/#02-Redux-Solution">
+            02-Redux-Solution
           </a>
         </li>
         <li className="nav-item">

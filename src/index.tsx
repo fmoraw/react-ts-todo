@@ -11,6 +11,8 @@ import SandboxHeader from "./SandBoxHeader";
 import { store, history } from "./02-ListComponent/setupMiddleware";
 import ListComponentContainer from "./02-ListComponent/ListComponent.container";
 
+import * as LC2 from "./02-Redux-Solution/ListComponent.container";
+
 import GettingStartedComponent from "./getting-started/MyFirstComponent";
 import Backend from "./backend/TodoList";
 import BackendSolution from "./backend-solution/TodoList";
@@ -44,8 +46,8 @@ ReactDOM.render(
           <Route path="/02-Redux-Container">
             <ListComponentContainer />
           </Route>
-          <Route path="/02-Redux-Container-Solution">
-            <ListComponentContainer />
+          <Route path="/02-Redux-Solution">
+            <LC2.default />
           </Route>
           <Route path="/forms">
             <Forms />
